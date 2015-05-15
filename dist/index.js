@@ -374,7 +374,7 @@ sync.init = function (bs) {
     }
     sync.saveScroll(utils.getWindow(), utils.getDocument());
     bs.socket.on("file:reload", sync.reload(bs));
-    bs.socket.on("browser:reload", function () {
+    bs.socket.on("browser:reload", function (data) {
         if(!data || !("basename" in data) || RegExp(escapeRegExp(data.path)).test(window.location.href)){
             if (bs.canSync({url: current()}, OPT_PATH)) {
                 sync.reloadBrowser(true);
